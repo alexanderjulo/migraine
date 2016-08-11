@@ -27,3 +27,12 @@ cat revisions/revision-000.py # show empty first revision
 ```
 
 Then modify `revisions/revision-000.py` to contain your code in the up and down functions. Afterwards run `flexigrate migrate head`, which will run the code contained in the `up` function of the migration.
+
+## Roadmap
+
+- [ ] Add support for elasticsearch as a storage
+- [ ] Write documentation
+- [ ] Add tests & increase test coverage (or add any in the first place)
+- [ ] Clean up code
+- [ ] Publish to PyPi
+- [ ] Switch to proper versioning instead of fixed numbers (and allow merges)
