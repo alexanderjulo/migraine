@@ -1,0 +1,5 @@
+revisions_location: {{ revisions_location }}
+storage:
+  module: flexigrate.ext.file
+  class: FileStorage
+  filename: .current_flexigrate_revision
