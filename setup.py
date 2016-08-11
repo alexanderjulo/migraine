@@ -13,6 +13,7 @@ setup(
         'PyYAML==3.11',
         'jinja2==2.7.3'
     ],
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': ['flexigrate=flexigrate.cli:main']
     }
