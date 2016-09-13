@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='migraine',
-    version='0.1.0',
+    version='1.0.0',
     description='Datastore independent migration tool',
     author='Alexander Jung-Loddenkemper',
     author_email='alexander@julo.ch',
