@@ -81,8 +81,10 @@ class Triptan(object):
                 "Revision #{} failed to load.".format(num)
             )
 
-    def load_revisions(self):
+    def load_revisions(self, reset=True):
         i = 0
+        if reset:
+            self.revisions = []
         while self._get_revision(i):
             self.revisions.append(self._get_revision(i))
             i += 1
@@ -112,6 +114,10 @@ class Triptan(object):
         revision_path = os.path.join(revisions_dir, file_name)
         with open(revision_path, 'w') as f:
             f.write(template.render(num=num, name=name))
+
+        # now load the revisions again to make sure we are caught up with
+        # the changes
+        self.load_revisions()
 
     def migrate(self, target):
         """
