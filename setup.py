@@ -17,6 +17,7 @@ setup(
         'PyYAML>=3,<4',
         'jinja2>=2,<4'
     ],
+    setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     entry_points={
         'console_scripts': ['triptan=triptan.cli:main']
