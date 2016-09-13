@@ -2,7 +2,7 @@ import os
 
 from redis import StrictRedis
 
-from migraine import BaseStorage
+from triptan import BaseStorage
 
 
 class RedisStorage(BaseStorage):
@@ -14,7 +14,7 @@ class RedisStorage(BaseStorage):
         super().__init__(*args, **kwargs)
         self._redis = None
         self.key_name = self.config.get(
-            'storage_key', 'migraine_current_version'
+            'storage_key', 'triptan_current_version'
         )
 
     @property

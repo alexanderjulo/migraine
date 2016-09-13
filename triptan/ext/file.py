@@ -1,6 +1,6 @@
 import os
 
-from migraine import BaseStorage
+from triptan import BaseStorage
 
 
 class FileStorage(BaseStorage):

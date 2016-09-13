@@ -12,7 +12,7 @@ import yaml
 from jinja2 import Template
 
 
-log = logging.getLogger('migraine')
+log = logging.getLogger('triptan')
 
 
 REV_FILE_NAME_FORMAT = u'revision-{0:03d}.py'
@@ -38,9 +38,9 @@ class MigrationLoadingException(Exception):
     pass
 
 
-class Migraine(object):
+class Triptan(object):
     """
-        The main migraine object.
+        The main triptan object.
     """
 
     def __init__(self, path, config_file):
@@ -158,9 +158,9 @@ class Migraine(object):
     @classmethod
     def setup(cls, path, config_file, config):
         """
-            Will initialize migraine at the given path.
+            Will initialize triptan at the given path.
         """
-        log.info("Setting up migraine for '%s'..", path)
+        log.info("Setting up triptan for '%s'..", path)
         template_path = os.path.join(
             os.path.dirname(__file__),
             'templates/config.yml'

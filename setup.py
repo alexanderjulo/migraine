@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='migraine',
+    name='triptan',
     version='1.0.0',
     description='Datastore independent migration tool',
     author='Alexander Jung-Loddenkemper',
     author_email='alexander@julo.ch',
-    url='https://github.com/alexanderjulo/migraine',
+    url='https://github.com/alexanderjulo/triptan',
     packages=find_packages(),
     install_requires=[
         'Click==6.0',
@@ -16,6 +16,6 @@ setup(
     ],
     tests_require=['pytest'],
     entry_points={
-        'console_scripts': ['migraine=migraine.cli:main']
+        'console_scripts': ['triptan=triptan.cli:main']
     }
 )

@@ -3,31 +3,32 @@ import os
 import click
 import click_log
 
-from migraine import Migraine
+from triptan import Triptan
 
 
-log = logging.getLogger('migraine')
+log = logging.getLogger('triptan')
+log.setLevel(logging.DEBUG)
 
 @click.group()
 @click.pass_context
-@click.option('--config', envvar='FLEXIGRATE_CONFIG', default='migraine.yml')
+@click.option('--config', envvar='FLEXIGRATE_CONFIG', default='triptan.yml')
 @click.option('--path', envvar='FLEXIGRATE_PATH', default=None)
 @click_log.simple_verbosity_option()
-@click_log.init('migraine')
+@click_log.init('triptan')
 def main(ctx, config, path):
     if not path:
         path = os.getcwd()
     ctx.meta['path'] = path
     ctx.meta['config'] = config
-    #try:
-    ctx.obj = Migraine(path, config)
-    #except:
-    #    log.warning("Flexigate is not set up for '%s'.", path)
+    try:
+        ctx.obj = Triptan(path, config)
+    except:
+        log.warning("Triptan is not set up for '%s'.", path)
 
 @main.command()
 @click.argument('target')
 @click.pass_obj
-def migrate(migraine, target):
+def migrate(triptan, target):
     """
         Migrate up & down.
 
@@ -37,30 +38,30 @@ def migrate(migraine, target):
 
         \b
         - ``head`` -- the topmost migration
-        - any number (1, 2, 3, -4, -5, +17), where migraine will
+        - any number (1, 2, 3, -4, -5, +17), where triptan will
           migrate the given amount of migrations up or down,
           depending on whether the number is positive or negative
         - any migration hash, where every migration between the
           current and the given migration will be executed.
     """
-    migraine.migrate(target)
+    triptan.migrate(target)
 
 @main.command()
 @click.pass_obj
-def revision(migraine):
+def revision(triptan):
     """
         Manage the revisions.
     """
-    migraine.new_revision()
+    triptan.new_revision()
 
 
 @main.command()
 @click.pass_obj
-def info(migraine):
+def info(triptan):
     """
         Returns the current migration.
     """
-    click.echo(migraine.current_revision)
+    click.echo(triptan.current_revision)
 
 
 @main.command()
@@ -69,4 +70,4 @@ def init(ctx):
     """
         Will create a configuration file
     """
-    Migraine.setup(ctx.meta['path'], ctx.meta['config'], {'revisions_location': 'revisions'})
+    Triptan.setup(ctx.meta['path'], ctx.meta['config'], {'revisions_location': 'revisions'})

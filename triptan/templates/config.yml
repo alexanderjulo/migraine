@@ -1,5 +1,5 @@
 revisions_location: {{ revisions_location }}
 storage:
-  module: migraine.ext.file
+  module: triptan.ext.file
   class: FileStorage
-  filename: .current_migraine_revision
+  filename: .current_triptan_revision
