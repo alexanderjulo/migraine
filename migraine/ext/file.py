@@ -1,6 +1,6 @@
 import os
 
-from flexigrate import BaseStorage
+from migraine import BaseStorage
 
 
 class FileStorage(BaseStorage):

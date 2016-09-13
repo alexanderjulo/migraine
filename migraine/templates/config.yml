@@ -1,5 +1,5 @@
 revisions_location: {{ revisions_location }}
 storage:
-  module: flexigrate.ext.file
+  module: migraine.ext.file
   class: FileStorage
-  filename: .current_flexigrate_revision
+  filename: .current_migraine_revision

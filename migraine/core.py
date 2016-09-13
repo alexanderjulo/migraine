@@ -9,7 +9,7 @@ import click
 from jinja2 import Template
 
 
-log = logging.getLogger('flexigrate')
+log = logging.getLogger('migraine')
 
 
 REV_FILE_NAME_FORMAT = u'revision-{0:03d}.py'
@@ -19,9 +19,9 @@ class MigrationLoadingException(Exception):
     pass
 
 
-class Flexigrate(object):
+class Migraine(object):
     """
-        The main flexigrate object.
+        The main migraine object.
     """
 
     def __init__(self, path, config_file):
@@ -140,9 +140,9 @@ class Flexigrate(object):
     @classmethod
     def setup(cls, path, config_file, config):
         """
-            Will initialize flexigrate at the given path.
+            Will initialize migraine at the given path.
         """
-        log.info("Setting up flexigrate for '%s'..", path)
+        log.info("Setting up migraine for '%s'..", path)
         template_path = os.path.join(
             os.path.dirname(__file__),
             'templates/config.yml'

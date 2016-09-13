@@ -2,7 +2,7 @@ import os
 
 from redis import StrictRedis
 
-from flexigrate import BaseStorage
+from migraine import BaseStorage
 
 
 class RedisStorage(BaseStorage):
@@ -14,7 +14,7 @@ class RedisStorage(BaseStorage):
         super().__init__(*args, **kwargs)
         self._redis = None
         self.key_name = self.config.get(
-            'storage_key', 'flexigrate_current_version'
+            'storage_key', 'migraine_current_version'
         )
 
     @property

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='flexigrate',
+    name='migraine',
     version='0.1.0',
     description='Datastore independent migration tool',
     author='Alexander Jung-Loddenkemper',
@@ -15,6 +15,6 @@ setup(
     ],
     tests_require=['pytest'],
     entry_points={
-        'console_scripts': ['flexigrate=flexigrate.cli:main']
+        'console_scripts': ['migraine=migraine.cli:main']
     }
 )
