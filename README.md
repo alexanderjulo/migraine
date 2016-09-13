@@ -34,7 +34,8 @@ Then modify `revisions/revision-000.py` to contain your code in the up and down 
 
 - [ ] Add support for elasticsearch as a storage
 - [ ] Write documentation
-- [ ] Add tests & increase test coverage (or add any in the first place)
+- [x] Add tests
+- [ ] increase test coverage
 - [ ] Clean up code
-- [ ] Publish to PyPi
+- [x] Publish to PyPi
 - [ ] Switch to proper versioning instead of fixed numbers (and allow merges)
