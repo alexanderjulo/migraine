@@ -6,6 +6,7 @@ setup(
     description='Datastore independent migration tool',
     author='Alexander Jung-Loddenkemper',
     author_email='alexander@julo.ch',
+    url='https://github.com/alexanderjulo/migraine',
     packages=find_packages(),
     install_requires=[
         'Click==6.0',
