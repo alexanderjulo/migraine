@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='triptan',
-    version='1.0.4',
+    version='1.0.5',
     description='Datastore independent migration tool',
     author='Alexander Jung-Loddenkemper',
     author_email='alexander@julo.ch',
