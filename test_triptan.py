@@ -1,11 +1,21 @@
 import os
 from unittest import TestCase
-from tempfile import TemporaryDirectory
+from tempfile import mkdtemp
+from shutil import rmtree
 
 from triptan.core import Triptan
 
 
-class TriptanInitializationTest(TestCase):
+class TriptanBaseTestCase(TestCase):
+
+    def setUp(self):
+        self.path = mkdtemp()
+
+    def tearDown(self):
+        rmtree(self.path)
+
+
+class TriptanInitializationTest(TriptanBaseTestCase):
     """
         Asserts that triptan can setup the necessary data correctly.
     """
@@ -14,17 +24,16 @@ class TriptanInitializationTest(TestCase):
         """
             Assert the file structure is created correctly.
         """
-        with TemporaryDirectory() as tmpd:
-            Triptan.setup(
-                tmpd,
-                'triptan.yml',
-                {'revisions_location': 'revisions'}
-            )
-            assert os.path.exists(os.path.join(tmpd, 'triptan.yml'))
-            assert os.path.exists(os.path.join(tmpd, 'revisions'))
+        Triptan.setup(
+            self.path,
+            'triptan.yml',
+            {'revisions_location': 'revisions'}
+        )
+        assert os.path.exists(os.path.join(self.path, 'triptan.yml'))
+        assert os.path.exists(os.path.join(self.path, 'revisions'))
 
 
-class TriptanTest(TestCase):
+class TriptanTest(TriptanBaseTestCase):
     """
         Assert the core functionality is working.
     """
@@ -33,13 +42,13 @@ class TriptanTest(TestCase):
         """
             Create a temporary directory and set triptan up with it.
         """
-        self.path = TemporaryDirectory()
+        super(TriptanTest, self).setUp()
         Triptan.setup(
-            self.path.name,
+            self.path,
             'triptan.yml',
             {'revisions_location': 'revisions'}
         )
-        self.triptan = Triptan(self.path.name, 'triptan.yml')
+        self.triptan = Triptan(self.path, 'triptan.yml')
 
     def test_default_revision(self):
         """
@@ -52,9 +61,9 @@ class TriptanTest(TestCase):
             Assert that revisions are correctly created.
         """
         self.triptan.new_revision("test revision")
-        rev_path = os.path.join(self.path.name, 'revisions/revision-000.py')
+        rev_path = os.path.join(self.path, 'revisions/revision-000.py')
         assert os.path.exists(rev_path)
 
         self.triptan.new_revision("another")
-        rev_path = os.path.join(self.path.name, 'revisions/revision-001.py')
+        rev_path = os.path.join(self.path, 'revisions/revision-001.py')
         assert os.path.exists(rev_path)
