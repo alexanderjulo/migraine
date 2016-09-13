@@ -103,7 +103,7 @@ class Triptan(object):
         log.info("Creating new revision #%i", num)
         template_path = os.path.join(
             os.path.dirname(__file__),
-            'templates/migration.py'
+            'templates/migration.py.jinja2'
         )
         with open(template_path, 'r') as f:
             template = Template(f.read())
@@ -163,7 +163,7 @@ class Triptan(object):
         log.info("Setting up triptan for '%s'..", path)
         template_path = os.path.join(
             os.path.dirname(__file__),
-            'templates/config.yml'
+            'templates/config.yml.jinja2'
         )
         with open(template_path, 'r') as f:
             template = Template(f.read())
