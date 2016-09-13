@@ -3,6 +3,7 @@
 __pycache__
 *.pyc
 .eggs
+dist
 
 # mac ignores
 .DS_Store
