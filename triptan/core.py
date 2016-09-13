@@ -1,11 +1,11 @@
 import logging
 import os
 import sys
+from importlib import import_module
 
 if sys.version_info < (3,0):
     import imp
 else:
-    from importlib import import_module
     from importlib.machinery import SourceFileLoader
 
 import yaml
