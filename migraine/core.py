@@ -1,11 +1,14 @@
 import logging
 import os
-from fnmatch import fnmatch
-from importlib import import_module
-from importlib.machinery import SourceFileLoader
+import sys
+
+if sys.version_info < (3,0):
+    import imp
+else:
+    from importlib import import_module
+    from importlib.machinery import SourceFileLoader
 
 import yaml
-import click
 from jinja2 import Template
 
 
@@ -13,6 +16,22 @@ log = logging.getLogger('migraine')
 
 
 REV_FILE_NAME_FORMAT = u'revision-{0:03d}.py'
+
+
+def load_module_from_path(name, path):
+    """
+        Load a module from the given path.
+
+        :param str name: name of the module
+        :param str path: the path to load the module from
+
+        :returns: the module at the path
+        :rtype: module
+    """
+    if sys.version_info < (3,0):
+        return imp.load_source(name, path)
+    else:
+        return SourceFileLoader(name, path).load_module()
 
 
 class MigrationLoadingException(Exception):
@@ -56,8 +75,7 @@ class Migraine(object):
         if not os.path.exists(rev_path):
             return False
         try:
-            return SourceFileLoader(
-                "revision-{}".format(num), rev_path).load_module()
+            return load_module_from_path("revision-{}".format(num), rev_path)
         except:
             raise MigrationLoadingException(
                 "Revision #{} failed to load.".format(num)
