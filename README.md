@@ -1,5 +1,7 @@
 # Readme
 
+[![Build Status](https://travis-ci.org/alexanderjulo/triptan.svg?branch=master)](https://travis-ci.org/alexanderjulo/triptan)
+
 You need migrations that are not bound to an SQL database? You distribute code to multiple separate environments and want to run migrations at certain points? triptan is for you! It supports multiple datastores out of the box and you can easily add your own, if it is not supported yet.
 
 Supported datastores:
